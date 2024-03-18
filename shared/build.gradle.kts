@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.jetbrainsCompose)
 }
 
 kotlin {
@@ -14,23 +15,33 @@ kotlin {
             commonWebpackConfig {
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
                     static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
                         add(project.projectDir.path)
                     }
                 }
             }
         }
     }
-    
-    jvm()
-    
+
     sourceSets {
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material)
+            implementation(compose.ui)
+            implementation(compose.components.resources)
+            implementation(compose.components.uiToolingPreview)
+
+            implementation(libs.kotlin.coroutines)
+
+            implementation(libs.logback)
         }
     }
 }
 
 repositories {
     mavenCentral()
+}
+
+compose.experimental {
+    web.application {}
 }
