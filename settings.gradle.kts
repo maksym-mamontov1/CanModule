@@ -1,4 +1,4 @@
-rootProject.name = "Mamontov"
+rootProject.name = "CanModule"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -18,6 +18,5 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
-include(":server")
+include(":web")
 include(":shared")

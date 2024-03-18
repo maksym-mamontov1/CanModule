@@ -10,10 +10,10 @@ plugins {
 kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "composeApp"
+        moduleName = "web"
         browser {
             commonWebpackConfig {
-                outputFileName = "composeApp.js"
+                outputFileName = "web.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
                     static = (static ?: mutableListOf()).apply {
                         // Serve sources to debug inside browser
@@ -38,8 +38,6 @@ kotlin {
         }
     }
 }
-
-
 
 compose.experimental {
     web.application {}
